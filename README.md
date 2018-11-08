@@ -2,19 +2,23 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+- [Requirment](#Requirment)
+- [Comment](#Comment)
 
-## Instructions
+## Requirment
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+-- COngruations pop : it is done (with the moves# and the times ); also it will reset once the user close the modal dialog box.
 
-To get started, open `js/app.js` and start building out the app's functionality
+-- restart button : it works (reset all the timer/ move count and CLEAR all the open and matched cards)
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+-- star rating ( I decrement by 1 after 16th and 24th moves)
 
-## Contributing
+-- timer : done
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+-- move-count : done..
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+## Comment
+
+-- I tried to modualized as much as i could
+-- I would like to learn what is the better way to moduleized the function. the most concerning is the ordering of the functions whic are also intermiggling with the varible and the DOM elements refernences. the code is not very maintainable which I am looking forward to the solution in the latter of this course.
+--
