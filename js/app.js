@@ -177,7 +177,6 @@ function stopTimer(timeTickCount) {
 
 //display timer
 function RestartTimer() {
-  stopTimer(timeTickCount);
   timeTickCount = null;
   document.querySelector("span.timer").textContent = 0;
   moveCount = 0;
@@ -208,8 +207,8 @@ allCards.forEach(function(card) {
           openCards = [];
           matchCounter.innerHTML = ++matchCount;
 
-          if (matchCount == 8) {
-            DisplayWinningMessage();
+          if (matchCount == 2) {
+            HandleWinning();
           }
         } else {
           HideAllOpenCards();
@@ -265,7 +264,8 @@ function DisplayMatchSymbol(card) {
   matchCards.push(card);
 }
 
-function DisplayWinningMessage() {
+function HandleWinning() {
+  stopTimer(timeTickCount);
   let recordedTime = document.getElementsByClassName("timer")[0].textContent;
   document.querySelector("span.recordedTime").textContent = recordedTime;
   modal.style.display = "block";
