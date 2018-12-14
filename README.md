@@ -4,6 +4,7 @@
 
 - [Requirment](#Requirment)
 - [Comment](#Comment)
+- [Comment-Followup](#Comment-Followup)
 
 ## Requirment
 
@@ -22,3 +23,13 @@
 -- I tried to modualized as much as i could
 -- I would like to learn what is the better way to moduleized the function. the most concerning is the ordering of the functions whic are also intermiggling with the varible and the DOM elements refernences. the code is not very maintainable which I am looking forward to the solution in the latter of this course.
 --
+
+## Comment-Followup
+
+_12.14.18_
+
+for the comment afte the initial submssion
+
+1. provide a restart button on the modal box
+2. timer is only called once in each session
+3. the timer should stops when the game ends.
