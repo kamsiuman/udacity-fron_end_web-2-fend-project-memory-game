@@ -1,8 +1,6 @@
 /*
  * Create a list that holds all of your cards
  */
-let timeTickCount = null;
-
 var Cards = [
   "fa-diamond",
   "fa-paper-plane",
@@ -32,7 +30,6 @@ function GenerateCard(card) {
     '"></i></li>'
   );
 }
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -82,9 +79,6 @@ var btn = document.getElementById("myBtn");
 
 // Get the button that reset the clock
 var h2 = document.getElementsByTagName("h2")[0];
-var seconds = 0;
-var minutes = 0;
-var hours = 0;
 // var timer;
 
 var btnRestart = document.getElementById("time");
@@ -94,6 +88,8 @@ var span = document.getElementsByClassName("close")[0];
 
 var openCards = []; //stack Data Structure to store all the "open" card items; logically, it should be at most 2 items
 var matchCards = []; //as a reference for reset... need to reset them
+
+var timeTickCount = null;
 
 function initDesk() {
   var deck = document.querySelector(".deck");
@@ -117,26 +113,6 @@ span.onclick = function() {
 
 initGame();
 
-// function timeTick() {
-//   seconds++;
-//   if (seconds >= 60) {
-//     seconds = 0;
-//     minutes++;
-//     if (minutes >= 60) {
-//       minutes = 0;
-//       hours++;
-//     }
-//   }
-
-//   h2.textContent =
-//     (hours ? (hours > 9 ? hours : "0" + hours) : "00") +
-//     ":" +
-//     (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") +
-//     ":" +
-//     (seconds > 9 ? seconds : "0" + seconds);
-
-//   StartTimer();
-// }
 function registerPopupEvents() {
   document.querySelector("a.start-new").addEventListener("click", function() {
     document.querySelector(".popup").style.display = "none";
@@ -188,10 +164,6 @@ btnRestart.addEventListener("click", function(e) {
   RestartTimer();
 });
 
-// function StartTimer() {
-//   timer = setTimeout(timeTick, 1000);
-// }
-
 function StartTimer() {
   return window.setInterval(function() {
     let timer = document.querySelector("span.timer");
@@ -208,11 +180,6 @@ function RestartTimer() {
   stopTimer(timeTickCount);
   timeTickCount = null;
   document.querySelector("span.timer").textContent = 0;
-  // h2.textContent = "00:00:00";
-  seconds = 0;
-  minutes = 0;
-  hours = 0;
-  // clearTimeout(timer);
   moveCount = 0;
   matchCount = 0;
   moveCounter.innerHTML = moveCount;
@@ -241,9 +208,8 @@ allCards.forEach(function(card) {
           openCards = [];
           matchCounter.innerHTML = ++matchCount;
 
-          if (matchCount == 2) {
+          if (matchCount == 8) {
             DisplayWinningMessage();
-            //RestartTimer();
           }
         } else {
           HideAllOpenCards();
