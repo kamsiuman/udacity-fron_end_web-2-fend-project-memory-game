@@ -1,8 +1,6 @@
 /*
  * Create a list that holds all of your cards
  */
-let timeTickCount = null;
-
 var Cards = [
   "fa-diamond",
   "fa-paper-plane",
@@ -85,9 +83,9 @@ var h2 = document.getElementsByTagName("h2")[0];
 var seconds = 0;
 var minutes = 0;
 var hours = 0;
-// var timer;
+var t;
 
-var btnRestart = document.getElementById("time");
+var btnRestart = document.getElementById("restart");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -100,7 +98,6 @@ function initDesk() {
   var cardHTML = shuffle(Cards).map(function(card) {
     return GenerateCard(card);
   });
-  registerPopupEvents();
   deck.innerHTML = cardHTML.join("");
 }
 
@@ -117,36 +114,29 @@ span.onclick = function() {
 
 initGame();
 
-// function timeTick() {
-//   seconds++;
-//   if (seconds >= 60) {
-//     seconds = 0;
-//     minutes++;
-//     if (minutes >= 60) {
-//       minutes = 0;
-//       hours++;
-//     }
-//   }
+function add() {
+  seconds++;
+  if (seconds >= 60) {
+    seconds = 0;
+    minutes++;
+    if (minutes >= 60) {
+      minutes = 0;
+      hours++;
+    }
+  }
 
-//   h2.textContent =
-//     (hours ? (hours > 9 ? hours : "0" + hours) : "00") +
-//     ":" +
-//     (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") +
-//     ":" +
-//     (seconds > 9 ? seconds : "0" + seconds);
+  h2.textContent =
+    (hours ? (hours > 9 ? hours : "0" + hours) : "00") +
+    ":" +
+    (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") +
+    ":" +
+    (seconds > 9 ? seconds : "0" + seconds);
 
-//   StartTimer();
-// }
-function registerPopupEvents() {
-  document.querySelector("a.start-new").addEventListener("click", function() {
-    document.querySelector(".popup").style.display = "none";
-    modal.style.display = "none";
-    RestartTimer();
-  });
-  document.querySelector("a.close").addEventListener("click", function() {
-    modal.style.display = "none";
-    document.querySelector(".popup").style.display = "none";
-  });
+  StartTimer();
+}
+
+function StartTimer() {
+  t = setTimeout(add, 1000);
 }
 
 function ResetStars() {
@@ -188,31 +178,13 @@ btnRestart.addEventListener("click", function(e) {
   RestartTimer();
 });
 
-// function StartTimer() {
-//   timer = setTimeout(timeTick, 1000);
-// }
-
-function StartTimer() {
-  return window.setInterval(function() {
-    let timer = document.querySelector("span.timer");
-    timer.textContent = parseInt(timer.textContent) + 1;
-  }, 1000);
-}
-
-function stopTimer(timeTickCount) {
-  window.clearInterval(timeTickCount);
-}
-
 //display timer
 function RestartTimer() {
-  stopTimer(timeTickCount);
-  timeTickCount = null;
-  document.querySelector("span.timer").textContent = 0;
-  // h2.textContent = "00:00:00";
+  h2.textContent = "00:00:00";
   seconds = 0;
   minutes = 0;
   hours = 0;
-  // clearTimeout(timer);
+  clearTimeout(t);
   moveCount = 0;
   matchCount = 0;
   moveCounter.innerHTML = moveCount;
@@ -225,9 +197,7 @@ function RestartTimer() {
 allCards.forEach(function(card) {
   card.addEventListener("click", function(e) {
     if (IsValidCardForOpen(card)) {
-      if (timeTickCount === null) {
-        timeTickCount = StartTimer();
-      }
+      StartTimer();
       DisplayCardSymbol(card);
       moveCounter.innerHTML = ++moveCount;
       starRating();
@@ -241,9 +211,9 @@ allCards.forEach(function(card) {
           openCards = [];
           matchCounter.innerHTML = ++matchCount;
 
-          if (matchCount == 2) {
+          if (matchCount == 8) {
             DisplayWinningMessage();
-            //RestartTimer();
+            RestartTimer();
           }
         } else {
           HideAllOpenCards();
@@ -300,11 +270,13 @@ function DisplayMatchSymbol(card) {
 }
 
 function DisplayWinningMessage() {
-  let recordedTime = document.getElementsByClassName("timer")[0].textContent;
-  document.querySelector("span.recordedTime").textContent = recordedTime;
   modal.style.display = "block";
-  document.getElementById("myModelTextMovesNumber").innerHTML =
-    "The number of moves : [" + moveCount + "]";
+  document.getElementById("myModelText").innerHTML =
+    "Congratulations!! you win!! with " +
+    moveCount +
+    "moves with time [" +
+    h2.textContent +
+    "] second";
 }
 
 //- display the card's symbol (put this functionality in another function that you call from this one)

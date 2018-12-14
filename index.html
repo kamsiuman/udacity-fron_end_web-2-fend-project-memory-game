@@ -14,11 +14,19 @@
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
-
+        <section class="popup">
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p id='myModelText'>Some text in the Modal..</p>
+            <h2>Congratulations!</h2>
+            <h2><p id='myModelTextMovesNumber'>Some text in the Modal..</p>
+            <p>The total time taken is <span class="recordedTime"></span> seconds
+            <br>
+            Play Again?</p>
+            </h2>
+        <a href="#" type="button" class="start-new"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+        <a href="#" type="button"  class="close"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+        </section>
         </div>
 
     </div>
@@ -38,8 +46,12 @@
             <span class="moves">3</span> Moves
             <span class="matches">3</span> Matches
 
-            <div id="restart">
-                <h2><time>00:00:00</time></h2>
+            <section class="time">
+                You are playing <span class="timer">0</span> Seconds!
+              </section>
+
+            <div id="time">
+                <!-- <h2><time>00:00:00</time></h2> -->
                 <i class="fa fa-repeat"></i>
             </div>
         </section>
