@@ -5,6 +5,7 @@
 - [Requirment](#Requirment)
 - [Comment](#Comment)
 - [Comment-Followup](#Comment-Followup)
+- [Bug](#Bug)
 
 ## Requirment
 
@@ -33,3 +34,11 @@ for the comment afte the initial submssion
 1. provide a restart button on the modal box
 2. timer is only called once in each session
 3. the timer should stops when the game ends.
+
+## Bug
+
+_12.15.18_
+
+fix the bug
+
+1. The Timer needs to stop, Once the user wins the game.
